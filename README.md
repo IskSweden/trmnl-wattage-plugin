@@ -1,1 +1,0 @@
-# trmnl-wattage-plugin
