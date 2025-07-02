@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Editor specific
+.vscode/
+.idea/
+*.swp
+*~
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Flask specific
+instance/
+
+# Matplotlib specific (if you save plots to disk for debugging, otherwise they are in memory)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+# Logs and other generated files
+*.log
+temp/
+tmp/
+
+# Sensitive information (if you were to add a .env file later)
+.env
