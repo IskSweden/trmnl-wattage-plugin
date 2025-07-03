@@ -38,6 +38,7 @@ class WattageMqttClient:
         try:
             payload = json.loads(msg.payload.decode())
             reader_data = payload.get("reader_data", [])
+            time_value = reader_data["metadata"]["time"]
             for item in reader_data:
                 if "1-0:1.7.0.255" in item:
                     watt_value = float(item["1-0:1.7.0.255"])
@@ -45,8 +46,8 @@ class WattageMqttClient:
                     break
 
             if watt_value is not None:
-                self.data_manager.set_latest_raw_wattage(watt_value) # Pass the value to data manager
-                logger.info(f"Latest wattage value: {watt_value} W")
+                self.data_manager.set_latest_raw_wattage(watt_value, time_value) # Pass the values to data manager
+                logger.info(f"Latest wattage value: {watt_value} W at {time_value}")
 
             else:
                 logger.warning(f"Wattage not found in MQTT payload: {payload}")
