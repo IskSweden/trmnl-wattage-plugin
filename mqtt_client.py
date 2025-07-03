@@ -40,12 +40,13 @@ class WattageMqttClient:
             reader_data = payload.get("reader_data", [])
             for item in reader_data:
                 if "1-0:1.7.0.255" in item:
-                    watt_value = float(item["1-0:1.7.0.255"])                 
+                    watt_value = float(item["1-0:1.7.0.255"])
+                    watt_value = watt_value * 1000                 
                     break
 
             if watt_value is not None:
                 self.data_manager.set_latest_raw_wattage(watt_value) # Pass the value to data manager
-                logger.info(f"Latest wattage value: {self.latest_wattage} W")
+                logger.info(f"Latest wattage value: {watt_value} W")
 
             else:
                 logger.warning(f"Wattage not found in MQTT payload: {payload}")
